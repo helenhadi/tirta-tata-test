@@ -41,6 +41,51 @@ class HomeController extends Controller
                     'msg' => view('tabel_a.form', compact('data'))->render()
                 ), 200);
                 break;
+            case 'a-import':
+                return response()->json(array(
+                    'ttl' => "Import Data Tabel A",
+                    'msg' => view('tabel_a.import')->render()
+                ), 200);
+                break;
+            case 'b':
+                $data = ($id == 0) ? null : TabelB::find($id);
+                return response()->json(array(
+                    'ttl' => ($id == 0 ? "Tambah" : "Ubah")." Data Tabel B",
+                    'msg' => view('tabel_b.form', compact('data'))->render()
+                ), 200);
+                break;
+            case 'b-import':
+                return response()->json(array(
+                    'ttl' => "Import Data Tabel B",
+                    'msg' => view('tabel_b.import')->render()
+                ), 200);
+                break;
+            case 'c':
+                $data = ($id == 0) ? null : TabelC::find($id);
+                return response()->json(array(
+                    'ttl' => ($id == 0 ? "Tambah" : "Ubah")." Data Tabel C",
+                    'msg' => view('tabel_c.form', compact('data'))->render()
+                ), 200);
+                break;
+            case 'c-import':
+                return response()->json(array(
+                    'ttl' => "Import Data Tabel C",
+                    'msg' => view('tabel_c.import')->render()
+                ), 200);
+                break;
+            case 'd':
+                $data = ($id == 0) ? null : TabelD::find($id);
+                return response()->json(array(
+                    'ttl' => ($id == 0 ? "Tambah" : "Ubah")." Data Tabel D",
+                    'msg' => view('tabel_d.form', compact('data'))->render()
+                ), 200);
+                break;
+            case 'a-import':
+                return response()->json(array(
+                    'ttl' => "Import Data Tabel D",
+                    'msg' => view('tabel_d.import')->render()
+                ), 200);
+                break;
         }
     }
 }

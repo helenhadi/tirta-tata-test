@@ -11,7 +11,8 @@ class TabelA extends Model
     protected $table = 'tabel_a';
     public $timestamps = false;
     protected $primaryKey = 'kode_baru';
-    protected $attributes = [
-        'kode_lama' => null,
+    protected $fillable = [
+        'kode_baru',
+        'kode_lama',
     ];
 }

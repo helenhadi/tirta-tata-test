@@ -15,7 +15,7 @@
                     </div>
                     <div class="col text-right">
                         <button class="btn btn-sm btn-primary" data-target="#modalPopup" data-toggle="modal" onclick="showModal(0, 'a')">Add New Data</button>
-                        <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal" onclick="showModal(0, 'a')">Import Data</button>
+                        <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal" onclick="showModal(0, 'a-import')">Import Data</button>
                         <div class="dropdown">
                             <button class="btn btn-danger dropdown-toggle btn-sm" type="button" id="dropdownExport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Export

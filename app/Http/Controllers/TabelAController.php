@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ExportTabelA;
-use App\Imports\ImportTabelB;
+use App\Imports\ImportTabelA;
 use App\Models\TabelA;
 use Illuminate\Http\Request;
 use Excel;
@@ -36,8 +36,8 @@ class TabelAController extends Controller
             $save = $data->save();
 
             if ($save)
-                return redirect()->back()->with('success', 'Data berhasil disimpan!');
-            return redirect()->back()->with('error', 'Gagal menyimpan data! Silahkan coba ulang beberapa saat lagi.');
+                return redirect()->back()->with('success', 'Data saved!');
+            return redirect()->back()->with('error', 'Failed to save! Please try again later.');
         }
         catch (\Illuminate\Database\QueryException $ex) {
             return redirect()->back()->with('error', $ex->getMessage());
@@ -50,19 +50,26 @@ class TabelAController extends Controller
             $delete = TabelA::find($request->id)->delete();
 
             if ($delete)
-                return redirect()->back()->with('success', 'Data berhasil dihapus!');
-            return redirect()->back()->with('error', 'Gagal menghapus data! Silahkan coba ulang beberapa saat lagi.');
+                return redirect()->back()->with('success', 'Data deleted!');
+            return redirect()->back()->with('error', 'Failed to delete! Please try again later.');
         } catch (\Illuminate\Database\QueryException $ex) {
 
         }
     }
 
-    public function import(Request $request){
-        Excel::import(new ImportTabelA, $request->file('file')->store('files'));
-        return redirect()->back();
+    public function import(Request $request)
+    {
+        Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx',
+        ])->validate();
+
+        Excel::import(new ImportTabelA, $request->file('file'));
+
+        return redirect()->back()->with('success', 'Data import succeed!');
     }
 
-    public function exportExcel(){
+    public function exportExcel()
+    {
         return Excel::download(new ExportTabelA, 'TableA.xlsx');
     }
 
