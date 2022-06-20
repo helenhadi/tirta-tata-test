@@ -6,7 +6,7 @@
                 <label>Kode Baru </label>
             </div>
             <div class="col-sm-8">
-				<input type="text" class="form-control" name="kode_baru" value="{{ $data!=null ? $data->kode_baru : '' }}" {{ $data!=null ? 'disabled required' : '' }}>
+				<input type="text" class="form-control" name="kode_baru" value="{{ $data!=null ? $data->kode_baru : '' }}" {{ $data!=null ? 'readonly required' : '' }}>
             </div>
         </div>
         <div class="row my-2">

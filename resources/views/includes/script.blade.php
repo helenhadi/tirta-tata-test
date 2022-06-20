@@ -21,10 +21,9 @@
 <script>
     $(document).ready(function() {
         $('#datatable').DataTable()
-        $('.select2').select2()
     });
 
-    function showModal(id, type, id2 = null) {
+    function showModal(id, type) {
         $('#modalPopupLabel').html("")
         $('#modalPopupContent').html("<div class='text-center my-3'>Sedang memproses...</div>")
         $.ajax({
@@ -34,7 +33,6 @@
                 '_token': '{{ csrf_token() }}',
                 'id': id,
                 'type': type,
-                'id2': id2,
             },
             success: function(data) {
                 $('#modalPopupLabel').html(data.ttl);
@@ -45,37 +43,5 @@
             }
         });
     }
-
-    // BEGIN: Steganography
-    var loaded_image = {
-        "cover": undefined,
-        "secret": undefined,
-        "stegimage": undefined,
-    };
-    const bit = 1;
-
-    function loadImage(which, cb, url = null) {
-        if (which == "secret" && url == null) {
-            let fileExtension = ['jpeg', 'jpg', 'png'];
-            let ext = $("#secret").val().split('.').pop().toLowerCase();
-            if (!fileExtension.includes(ext)) {
-                $('#secret').val('');
-                alert('Tipe file yang diterima adalah jpg, jpeg, dan png');
-            }
-        }
-
-        loaded_image[which] = undefined;
-        let image = new Image;
-        image.onload = function() {
-            loaded_image[which] = image;
-            cb(which);
-        }
-        if (which == "cover" || which == "stegimage" || (which == "secret" && url != null)) image.src = url;
-        else {
-            image.src = URL.createObjectURL($('#' + which)[0].files[0]);
-            $('#simpansign').prop('disabled', false);
-        }
-    }
-    // END: Steganography
 </script>
 @yield('script')

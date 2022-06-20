@@ -14,10 +14,13 @@
                         </div>
                     </div>
                     <div class="col text-right">
-                        <button class="btn btn-sm btn-primary" data-target="#modalPopup" data-toggle="modal" onclick="showModal(0, 'd')">Add New Data</button>
-                        <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal" onclick="showModal(0, 'd-import')">Import Data</button>
+                        <button class="btn btn-sm btn-primary" data-target="#modalPopup" data-toggle="modal"
+                            onclick="showModal(0, 'd')">Add New Data</button>
+                        <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal"
+                            onclick="showModal(0, 'd-import')">Import Data</button>
                         <div class="dropdown">
-                            <button class="btn btn-danger dropdown-toggle btn-sm" type="button" id="dropdownExport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-danger dropdown-toggle btn-sm" type="button" id="dropdownExport"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Export
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownExport">
@@ -54,10 +57,14 @@
                                         </th>
                                         <td>{{ $item->nama_sales }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal" onclick="showModal('{{ $item->kode_sales }}', 'd')">Edit</button>
-                                            <form method="POST" action="{{ route('d.delete', ['id' => $item->kode_sales]) }}">
+                                            <button class="btn btn-sm btn-success" data-target="#modalPopup"
+                                                data-toggle="modal"
+                                                onclick="showModal('{{ $item->kode_sales }}', 'd')">Edit</button>
+                                            <form method="POST"
+                                                action="{{ route('d.delete', ['id' => $item->kode_sales]) }}">
                                                 @csrf
-                                                <button class="btn btn-sm btn-danger" type="submit" onclick="if(!confirm('Are you sure want to delete this data? You can\'t undo this action.')) return false;">Delete</button>
+                                                <button class="btn btn-sm btn-danger" type="submit"
+                                                    onclick="if(!confirm('Are you sure want to delete this data? You can\'t undo this action.')) return false;">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

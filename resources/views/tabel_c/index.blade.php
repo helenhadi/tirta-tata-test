@@ -54,7 +54,7 @@
                                         </th>
                                         <td>{{ $item->area_sales }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal" onclick="showModal('{{ $item->kode_baru }}', 'c')">Edit</button>
+                                            <button class="btn btn-sm btn-success" data-target="#modalPopup" data-toggle="modal" onclick="showModal('{{ $item->kode_toko }}', 'c')">Edit</button>
                                             <form method="POST" action="{{ route('c.delete', ['id' => $item->kode_toko]) }}">
                                                 @csrf
                                                 <button class="btn btn-sm btn-danger" type="submit" onclick="if(!confirm('Are you sure want to delete this data? You can\'t undo this action.')) return false;">Delete</button>

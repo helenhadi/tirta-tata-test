@@ -21,12 +21,12 @@ class TabelDController extends Controller
     public function save(Request $request)
     {
         try {
-            $isCreate = $request->id==0 ? true : false;
+            $isCreate = $request->id==0&&is_numeric($request->id) ? true : false;
             $kode_sales = $isCreate ? $request->kode_sales : $request->id;
             $nama_sales = $request->nama_sales;
 
             Validator::make($request->all(), [
-                'kode_sales' => 'required|unique:tabel_d,kode_sales',
+                'kode_sales' => 'required'.($isCreate ? '|unique:tabel_d,kode_sales' : ''),
                 'nama_sales' => 'required',
             ])->validate();
 
@@ -76,7 +76,7 @@ class TabelDController extends Controller
     public function exportPdf()
     {
         $data = TabelD::all();
-        $pdf = PDF::loadView('tabel_b.exports.pdf', ['data' => $data]);
+        $pdf = PDF::loadView('tabel_d.exports.pdf', ['data' => $data]);
 
         return $pdf->download('TableD.pdf');
     }

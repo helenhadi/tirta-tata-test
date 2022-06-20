@@ -17,7 +17,7 @@ class ImportTabelD implements ToModel, WithHeadingRow, withValidation, SkipsOnFa
 
     public function model(array $row)
     {
-        return new TabelB([
+        return new TabelD([
             'kode_sales' => $row['kode_sales'],
             'nama_sales' => $row['nama_sales'],
         ]);

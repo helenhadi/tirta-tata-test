@@ -55,9 +55,9 @@ Route::prefix('d')->name('d.')->group(function () {
     Route::get('/', [TabelDController::class, 'index'])->name('index');
     Route::post('/save', [TabelDController::class, 'save'])->name('save');
     Route::post('/delete', [TabelDController::class, 'destroy'])->name('delete');
-    Route::post('/import',[TabelCController::class,'import'])->name('import');
+    Route::post('/import',[TabelDController::class,'import'])->name('import');
     Route::prefix('export')->name('export.')->group(function () {
-        Route::get('/excel',[TabelCController::class,'exportExcel'])->name('excel');
-        Route::get('/pdf',[TabelCController::class,'exportPdf'])->name('pdf');
+        Route::get('/excel',[TabelDController::class,'exportExcel'])->name('excel');
+        Route::get('/pdf',[TabelDController::class,'exportPdf'])->name('pdf');
     });
 });

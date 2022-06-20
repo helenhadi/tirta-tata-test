@@ -74,13 +74,13 @@ class HomeController extends Controller
                 ), 200);
                 break;
             case 'd':
-                $data = ($id == 0) ? null : TabelD::find($id);
+                $data = ($id==0 && is_numeric($id)) ? null : TabelD::find($id);
                 return response()->json(array(
                     'ttl' => ($id == 0 ? "Tambah" : "Ubah")." Data Tabel D",
                     'msg' => view('tabel_d.form', compact('data'))->render()
                 ), 200);
                 break;
-            case 'a-import':
+            case 'd-import':
                 return response()->json(array(
                     'ttl' => "Import Data Tabel D",
                     'msg' => view('tabel_d.import')->render()

@@ -6,7 +6,7 @@
                 <label>Kode Toko </label>
             </div>
             <div class="col-sm-8">
-				<input type="text" class="form-control" name="kode_toko" value="{{ $data!=null ? $data->kode_toko : '' }}" {{ $data!=null ? 'disabled required' : '' }}>
+				<input type="text" class="form-control" name="kode_toko" value="{{ $data!=null ? $data->kode_toko : '' }}" {{ $data!=null ? 'readonly required' : '' }}>
             </div>
         </div>
         <div class="row my-2">

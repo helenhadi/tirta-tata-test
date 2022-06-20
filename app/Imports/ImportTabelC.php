@@ -17,7 +17,7 @@ class ImportTabelC implements ToModel, WithHeadingRow, withValidation, SkipsOnFa
 
     public function model(array $row)
     {
-        return new TabelB([
+        return new TabelC([
             'kode_toko' => $row['kode_toko'],
             'area_sales' => $row['area_sales'],
         ]);
