@@ -25,6 +25,11 @@ Route::prefix('a')->name('a.')->group(function () {
     Route::get('/', [TabelAController::class, 'index'])->name('index');
     Route::post('/save', [TabelAController::class, 'save'])->name('save');
     Route::post('/delete', [TabelAController::class, 'destroy'])->name('delete');
+    Route::post('/import',[TabelAController::class,'import'])->name('import');
+    Route::prefix('export')->name('export.')->group(function () {
+        Route::get('/excel',[TabelAController::class,'exportExcel'])->name('excel');
+        Route::get('/pdf',[TabelAController::class,'exportPdf'])->name('pdf');
+    });
 });
 Route::prefix('b')->name('b.')->group(function () {
     Route::get('/', [TabelBController::class, 'index'])->name('index');

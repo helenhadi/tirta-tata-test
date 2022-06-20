@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportTabelA;
+use App\Imports\ImportTabelB;
 use App\Models\TabelA;
 use Illuminate\Http\Request;
+use Excel;
+use PDF;
 use Validator;
 
 class TabelAController extends Controller
@@ -51,5 +55,22 @@ class TabelAController extends Controller
         } catch (\Illuminate\Database\QueryException $ex) {
 
         }
+    }
+
+    public function import(Request $request){
+        Excel::import(new ImportTabelA, $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
+    public function exportExcel(){
+        return Excel::download(new ExportTabelA, 'TableA.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $data = TabelA::all();
+        $pdf = PDF::loadView('tabel_a.exports.pdf', ['data' => $data]);
+
+        return $pdf->download('TableA.pdf');
     }
 }

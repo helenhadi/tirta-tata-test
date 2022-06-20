@@ -22,10 +22,10 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownExport">
                                 <div class="dropdown-item">
-                                    <a href="" class="btn btn-sm btn-info">Excel</a>
+                                    <a href="{{ route('a.export.excel') }}" class="btn btn-sm btn-info">Excel</a>
                                 </div>
                                 <div class="dropdown-item">
-                                    <a href="" class="btn btn-sm btn-warning">PDF</a>
+                                    <a href="{{ route('a.export.pdf') }}" class="btn btn-sm btn-warning">PDF</a>
                                 </div>
                             </div>
                         </div>
