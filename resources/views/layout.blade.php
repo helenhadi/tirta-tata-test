@@ -24,7 +24,7 @@
         <!-- Topnav -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="https://helenhadi.ifubaya.id/portfolio" target="_blank">
                     {{-- <img src="{{ asset('assets/img/brand/white.png') }}" style="max-width: 100px"> --}}
                     <h1 style="color: white;"><b>TirtaTata</b></h1>
                 </a>
@@ -55,7 +55,7 @@
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-12">
                         <div class="copyright text-center  text-lg-left  text-muted">
-                            &copy; {{date('Y')}} <a href="javascript:;" class="font-weight-bold ml-1">{{env('APP_NAMA') ?? "StegSign"}}</a>
+                            &copy; {{date('Y')}} <a href="javascript:;" class="font-weight-bold ml-1"><a href="https://helenhadi.ifubaya.id/portfolio" target="_blank">{{env('APP_NAMA') ?? "StegSign"}}</a></a>
                         </div>
                     </div>
                 </div>
