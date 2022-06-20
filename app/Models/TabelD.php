@@ -12,7 +12,8 @@ class TabelD extends Model
     public $timestamps = false;
     protected $keyType = 'string';
     protected $primaryKey = 'kode_sales';
-    protected $attributes = [
+    protected $fillable = [
+        'kode_sales',
         'nama_sales',
     ];
 }

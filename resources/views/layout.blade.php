@@ -25,7 +25,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="">
-                    <img src="{{ asset('assets/img/brand/white.png') }}" style="max-width: 100px">
+                    {{-- <img src="{{ asset('assets/img/brand/white.png') }}" style="max-width: 100px"> --}}
+                    <h1 style="color: white;"><b>TirtaTata</b></h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

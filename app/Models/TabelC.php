@@ -11,7 +11,8 @@ class TabelC extends Model
     protected $table = 'tabel_c';
     public $timestamps = false;
     protected $primaryKey = 'kode_toko';
-    protected $attributes = [
+    protected $fillable = [
+        'kode_toko',
         'area_sales',
     ];
 }

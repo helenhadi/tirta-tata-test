@@ -2,84 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportTabelD;
+use App\Imports\ImportTabelD;
 use App\Models\TabelD;
 use Illuminate\Http\Request;
+use Excel;
+use PDF;
+use Validator;
 
 class TabelDController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data = TabelD::all();
-        return view('tabel_d.index', compact('data'));    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('tabel_d.index', compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function save(Request $request)
     {
-        //
+        try {
+            $isCreate = $request->id==0 ? true : false;
+            $kode_sales = $isCreate ? $request->kode_sales : $request->id;
+            $nama_sales = $request->nama_sales;
+
+            Validator::make($request->all(), [
+                'kode_sales' => 'required|unique:tabel_d,kode_sales',
+                'nama_sales' => 'required',
+            ])->validate();
+
+            $data = ($isCreate) ? new TabelD : TabelD::find($kode_sales);
+            $data->kode_sales = $kode_sales;
+            $data->nama_sales = $nama_sales;
+            $save = $data->save();
+
+            if ($save)
+                return redirect()->back()->with('success', 'Data saved!');
+            return redirect()->back()->with('error', 'Failed to save! Please try again later.');
+        }
+        catch (\Illuminate\Database\QueryException $ex) {
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TabelD  $tabelD
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TabelD $tabelD)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $delete = TabelD::find($request->id)->delete();
+
+            if ($delete)
+                return redirect()->back()->with('success', 'Data deleted!');
+            return redirect()->back()->with('error', 'Failed to delete! Please try again later.');
+        } catch (\Illuminate\Database\QueryException $ex) {
+
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TabelD  $tabelD
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TabelD $tabelD)
+    public function import(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx',
+        ])->validate();
+
+        Excel::import(new ImportTabelD, $request->file('file'));
+
+        return redirect()->back()->with('success', 'Data import succeed!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TabelD  $tabelD
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, TabelD $tabelD)
+    public function exportExcel()
     {
-        //
+        return Excel::download(new ExportTabelD, 'TableD.xlsx');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TabelD  $tabelD
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TabelD $tabelD)
+    public function exportPdf()
     {
-        //
+        $data = TabelD::all();
+        $pdf = PDF::loadView('tabel_b.exports.pdf', ['data' => $data]);
+
+        return $pdf->download('TableD.pdf');
     }
 }

@@ -15,7 +15,8 @@ class TabelBController extends Controller
     public function index()
     {
         $data = TabelB::all();
-        return view('tabel_b.index', compact('data'));    }
+        return view('tabel_b.index', compact('data'));
+    }
 
     public function save(Request $request)
     {
