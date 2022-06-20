@@ -14,4 +14,8 @@ class TabelB extends Model
     protected $attributes = [
         'nominal_transaksi' => 0,
     ];
+    protected $fillable = [
+        'kode_toko',
+        'nominal_transaksi',
+    ];
 }

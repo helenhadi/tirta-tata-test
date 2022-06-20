@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Table A</title>
+    <title>Table B</title>
 </head>
 <body>
     <div class="container">
@@ -16,19 +16,19 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Kode Baru</th>
-                        <th scope="col">Kode Lama</th>
+                        <th scope="col">Kode Toko</th>
+                        <th scope="col">Nominal Transaksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                         $no = 0;
                     @endphp
-                    @foreach ($data as $data)
+                    @foreach ($data as $item)
                         <tr>
                             <th scope="row">{{ ++$no }}</th>
-                            <td>{{ $data->kode_baru }}</td>
-                            <td>{{ $data->kode_lama }}</td>
+                            <td>{{ $item->kode_toko }}</td>
+                            <td>{{ number_format($item->nominal_transaksi, 2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>

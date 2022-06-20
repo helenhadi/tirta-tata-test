@@ -35,14 +35,29 @@ Route::prefix('b')->name('b.')->group(function () {
     Route::get('/', [TabelBController::class, 'index'])->name('index');
     Route::post('/save', [TabelBController::class, 'save'])->name('save');
     Route::post('/delete', [TabelBController::class, 'destroy'])->name('delete');
+    Route::post('/import',[TabelBController::class,'import'])->name('import');
+    Route::prefix('export')->name('export.')->group(function () {
+        Route::get('/excel',[TabelBController::class,'exportExcel'])->name('excel');
+        Route::get('/pdf',[TabelBController::class,'exportPdf'])->name('pdf');
+    });
 });
 Route::prefix('c')->name('c.')->group(function () {
     Route::get('/', [TabelCController::class, 'index'])->name('index');
     Route::post('/save', [TabelCController::class, 'save'])->name('save');
     Route::post('/delete', [TabelCController::class, 'destroy'])->name('delete');
+    Route::post('/import',[TabelCController::class,'import'])->name('import');
+    Route::prefix('export')->name('export.')->group(function () {
+        Route::get('/excel',[TabelCController::class,'exportExcel'])->name('excel');
+        Route::get('/pdf',[TabelCController::class,'exportPdf'])->name('pdf');
+    });
 });
 Route::prefix('d')->name('d.')->group(function () {
     Route::get('/', [TabelDController::class, 'index'])->name('index');
     Route::post('/save', [TabelDController::class, 'save'])->name('save');
     Route::post('/delete', [TabelDController::class, 'destroy'])->name('delete');
+    Route::post('/import',[TabelCController::class,'import'])->name('import');
+    Route::prefix('export')->name('export.')->group(function () {
+        Route::get('/excel',[TabelCController::class,'exportExcel'])->name('excel');
+        Route::get('/pdf',[TabelCController::class,'exportPdf'])->name('pdf');
+    });
 });
