@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TabelAController;
+use App\Http\Controllers\TabelBController;
+use App\Http\Controllers\TabelCController;
+use App\Http\Controllers\TabelDController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +18,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+Route::post('/modal', [HomeController::class, 'modal'])->name('modal');
+Route::prefix('a')->name('a.')->group(function () {
+    Route::get('/', [TabelAController::class, 'index'])->name('index');
+    Route::post('/save', [TabelAController::class, 'save'])->name('save');
+    Route::post('/delete', [TabelAController::class, 'destroy'])->name('delete');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('b')->name('b.')->group(function () {
+    Route::get('/', [TabelBController::class, 'index'])->name('index');
+    Route::post('/save', [TabelBController::class, 'save'])->name('save');
+    Route::post('/delete', [TabelBController::class, 'destroy'])->name('delete');
+});
+Route::prefix('c')->name('c.')->group(function () {
+    Route::get('/', [TabelCController::class, 'index'])->name('index');
+    Route::post('/save', [TabelCController::class, 'save'])->name('save');
+    Route::post('/delete', [TabelCController::class, 'destroy'])->name('delete');
+});
+Route::prefix('d')->name('d.')->group(function () {
+    Route::get('/', [TabelDController::class, 'index'])->name('index');
+    Route::post('/save', [TabelDController::class, 'save'])->name('save');
+    Route::post('/delete', [TabelDController::class, 'destroy'])->name('delete');
+});

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TabelA;
+use App\Models\TabelB;
+use App\Models\TabelC;
+use App\Models\TabelD;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +27,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('index');
+    }
+    public function modal(Request $request)
+    {
+        $id = $request->id;
+        switch ($request->type) {
+
+            case 'a':
+                $data = ($id == 0) ? null : TabelA::find($id);
+                return response()->json(array(
+                    'ttl' => ($id == 0 ? "Tambah" : "Ubah")." Data Tabel A",
+                    'msg' => view('tabel_a.form', compact('data'))->render()
+                ), 200);
+                break;
+        }
     }
 }
