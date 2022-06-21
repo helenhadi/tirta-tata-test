@@ -26,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="https://helenhadi.ifubaya.id/portfolio" target="_blank">
                     {{-- <img src="{{ asset('assets/img/brand/white.png') }}" style="max-width: 100px"> --}}
-                    <h1 style="color: white;"><b>TirtaTata</b></h1>
+                    <h1 style="color: white;"><b>{{env('APP_NAMA') ?? "StegSign"}}</b></h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
