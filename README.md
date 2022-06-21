@@ -1,4 +1,4 @@
--------------------- READ ME PLEASE -------------------- 
+------------------------------------------------- READ ME PLEASE -------------------------------------------------
 
 - This project is made by Helen Hadi for Tirtakencana Tatawarna IT Dept. As a matter of coding test. 
 - Made with Laravel 8 Framework, PHP, JS, MySQL Database, and Argon Bootstrap Template. 
